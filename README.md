@@ -2,6 +2,7 @@
 Assignment for NodeJs
 
 Instructions: 
+API key(apiKey) need to generate with their site(https://newsapi.org/) to register yourselves.
 
 API end point: localhost:3333/api/news
 
