@@ -16,9 +16,17 @@ router.get('/', function(req, res, next) {
 
 router.post('/news', (req, res, next) => {
   getNews(req).then(rs => {
-      res.json({"result": firstFiveRecords(rs.articles, 5)});
+      if(rs.status === "ok"){
+        if(rs.articles.length === 0) {
+            res.status(404).send({"result": "Data not found."});
+        } else {
+            res.json({"result": firstFiveRecords(rs.articles, 5)});
+        }
+      } else{
+          res.status(400).send({"result": rs.message});
+      }      
   }).catch(error => {
-      res.sendStatus(500);
+      res.json({"result": error});
   });  
 });
 
